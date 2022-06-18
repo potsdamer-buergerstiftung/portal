@@ -1,3 +1,4 @@
-FROM nginx:alpine
+FROM directus/directus
 
-EXPOSE 80
+EXPOSE 8055
+CMD npx directus bootstrap && npx directus start
