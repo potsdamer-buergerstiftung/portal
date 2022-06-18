@@ -26,10 +26,7 @@ LABEL directus.version="${VERSION}"
 # Default environment variables
 # (see https://docs.directus.io/reference/environment-variables/)
 ENV \
-  DB_CLIENT="sqlite3" \
-  DB_FILENAME="/directus/database/database.sqlite" \
-  EXTENSIONS_PATH="/directus/extensions" \
-  STORAGE_LOCAL_ROOT="/directus/uploads"
+  EXTENSIONS_PATH="/directus/extensions" 
 
 RUN \
   # Upgrade system and install 'ssmtp' to be able to send mails
