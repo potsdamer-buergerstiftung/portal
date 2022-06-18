@@ -14,7 +14,6 @@ RUN \
   && ln -sf /usr/bin/python3 /usr/bin/python \
   ; fi
 RUN npm i --only=production --no-package-lock
-RUN rm *.tgz
 
 # Directus image
 FROM node:${NODE_VERSION}
