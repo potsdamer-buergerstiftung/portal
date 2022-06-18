@@ -13,7 +13,7 @@ RUN \
   build-base \
   && ln -sf /usr/bin/python3 /usr/bin/python \
   ; fi
-RUN npm i --only=production --no-package-lock
+RUN npm i --omit=dev --no-package-lock
 
 # Directus image
 FROM node:${NODE_VERSION}
@@ -26,7 +26,7 @@ LABEL directus.version="${VERSION}"
 # Default environment variables
 # (see https://docs.directus.io/reference/environment-variables/)
 ENV \
-  EXTENSIONS_PATH="/directus/extensions" 
+  EXTENSIONS_PATH="/directus/extensions"
 
 RUN \
   # Upgrade system and install 'ssmtp' to be able to send mails
@@ -51,15 +51,11 @@ COPY --from=builder --chown=node:node /directus .
 RUN \
   # Create data directories
   mkdir -p \
-    database \
-    extensions \
-    uploads
+    extensions
 
 # Expose data directories as volumes
 VOLUME \
-  /directus/database \
-  /directus/extensions \
-  /directus/uploads
+  /directus/extensions
 
 EXPOSE 8055
-CMD npx directus bootstrap && npx directus start
+CMD npx directus start
