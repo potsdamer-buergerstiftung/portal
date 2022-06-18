@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://potsdamerbuergerstiftung.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_e58ff33676414507ab9d22c1f07c7bcb }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_7a6108c609ff4b9882d020d1fe7ab616 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_2aaeecac8ea546d2ac1db65258bcdad4 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_360be0847a7d40e7b062b9a3a2ce029d }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: potsdamerbuergerstiftung.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e58ff33676414507ab9d22c1f07c7bcb }}/potsdamerbuergerstiftung.azurecr.io/potsdamerbuergerstiftung/portal:${{ github.sha }}
+        tags: potsdamerbuergerstiftung.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2aaeecac8ea546d2ac1db65258bcdad4 }}/potsdamerbuergerstiftung.azurecr.io/potsdamerbuergerstiftung/portal:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'cms-directus'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c18378d8b11c4b16a9d03c4666e1e20f }}
-        images: 'potsdamerbuergerstiftung.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e58ff33676414507ab9d22c1f07c7bcb }}/potsdamerbuergerstiftung.azurecr.io/potsdamerbuergerstiftung/portal:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b4020ac1662b438e88edd21507bea6ad }}
+        images: 'potsdamerbuergerstiftung.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2aaeecac8ea546d2ac1db65258bcdad4 }}/potsdamerbuergerstiftung.azurecr.io/potsdamerbuergerstiftung/portal:${{ github.sha }}'
